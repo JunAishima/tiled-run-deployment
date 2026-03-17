@@ -19,7 +19,7 @@ def on_child_metadata_updated(update):
             print(
                 f"dry run: run_deployment(\
                   name={args.deployment_name}, \
-                  parameters={{'stop_doc': {doc}}},\
+                  parameters={{'stop_doc': {doc}}}, \
                   timeout=0, )"
             )
         else:
