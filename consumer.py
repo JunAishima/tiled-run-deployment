@@ -16,12 +16,17 @@ def on_child_metadata_updated(update):
     doc = update.metadata.get("stop")
     if doc:
         if args.dry_run == "True":
-            print(f"dry run: run_deployment(name={args.deployment_name},parameters={{'stop_doc':{doc}}},timeout=0,)")
+            print(
+                f"dry run: run_deployment(\
+                  name={args.deployment_name},\
+                  parameters={{'stop_doc':{doc}}},\
+                  timeout=0,)"
+            )
         else:
             print(f"running workflow - {args.deployment_name} {doc}")
             run_deployment(
                 name=args.deployment_name,
-                parameters={"stop_doc":doc},
+                parameters={"stop_doc": doc},
                 timeout=0,
             )
     else:
@@ -34,8 +39,10 @@ def message_to_workflow():
     pt = client[f"{args.endstation}/migration"]
     sub = pt.subscribe()
     sub.child_metadata_updated.add_callback(on_child_metadata_updated)
-    print(f"Listening on \
-            {args.endstation} for deployment {args.deployment_name}.")
+    print(
+        f"Listening on \
+            {args.endstation} for deployment {args.deployment_name}."
+    )
     sub.start()  # block
 
 
