@@ -8,6 +8,7 @@ arg_parser = argparse.ArgumentParser(
 )
 arg_parser.add_argument("endstation")
 arg_parser.add_argument("deployment_name")
+arg_parser.add_argument("dry_run")
 args = arg_parser.parse_args()
 
 
@@ -18,11 +19,18 @@ def on_child_metadata_updated(update):
     )
     doc = update.metadata.get("stop")
     if doc:
-        run_deployment(
-            name=args.deployment_name,
-            parameters={"stop_doc": doc},
-            timeout=0,
-        )
+        if args.dry_run:
+            print(f"run_deployment(\
+                name={args.deployment_name},\
+                parameters={'stop_doc':doc},\
+                timeout=0,\
+                )")
+        else:
+            run_deployment(
+                name={args.deployment_name},
+                parameters={"stop_doc":doc},
+                timeout=0,
+            )
     else:
         print(update.metadata["name"])
         pass
