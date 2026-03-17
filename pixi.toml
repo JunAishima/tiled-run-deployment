@@ -1,0 +1,12 @@
+[workspace]
+authors = ["Jun Aishima <jaishima@bnl.gov>"]
+channels = ["conda-forge"]
+name = "tiled_websocket_prefect_run_deployment"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+tiled-client = ">=0.2.8,<0.3"
+prefect = ">=3.6.21,<4"
