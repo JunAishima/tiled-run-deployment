@@ -18,9 +18,9 @@ def on_child_metadata_updated(update):
         if args.dry_run == "True":
             print(
                 f"dry run: run_deployment(\
-                  name={args.deployment_name},\
-                  parameters={{'stop_doc':{doc}}},\
-                  timeout=0,)"
+                  name={args.deployment_name}, \
+                  parameters={{'stop_doc': {doc}}},\
+                  timeout=0, )"
             )
         else:
             print(f"running workflow - {args.deployment_name} {doc}")
